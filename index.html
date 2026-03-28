@@ -548,7 +548,7 @@ footer {
 .footer-bottom {
   max-width: 1400px; margin: 0 auto; padding-top: 24px;
   border-top: 1px solid rgba(255,255,255,0.05);
-  display: flex; align-items: center; justify-content: space-between; flex-wrap: gap-12px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
 }
 .footer-bottom p { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); }
 .footer-legal { display: flex; gap: 16px; }
@@ -741,6 +741,7 @@ footer {
 }
 .orynth-badge-wrap:hover { transform: scale(1.05); }
 
+</style>
 </head>
 <body>
 
@@ -1586,7 +1587,6 @@ function initTimeline() {
 
 function renderTimeline(items) {
   const track = document.getElementById('timelineTrack');
-  // Remove old items but keep line
   const line = track.querySelector('.timeline-line');
   track.innerHTML = '';
   track.appendChild(line);
@@ -1770,7 +1770,6 @@ function endTrivia() {
   document.getElementById('resultTitle').textContent = title;
   document.getElementById('resultMsg').textContent = msg;
 
-  // Update leaderboard with user score
   leaderboardData[leaderboardData.length-1].pts = totalPoints;
   leaderboardData.sort((a,b) => b.pts - a.pts);
 
@@ -1858,7 +1857,6 @@ function submitEntry() {
   unlockBadge('contributor');
   showToast('✅ Submission added! +50 pts');
 
-  // Clear form
   document.getElementById('subName').value = '';
   document.getElementById('subTitle').value = '';
   document.getElementById('subYear').value = '';
@@ -1870,14 +1868,12 @@ function addPoints(pts) {
   totalPoints += pts;
   document.getElementById('navPoints').textContent = `⭐ ${totalPoints} PTS`;
 
-  // Show points popup
   const popup = document.createElement('div');
   popup.className = 'points-popup';
   popup.textContent = `+${pts} pts`;
   document.body.appendChild(popup);
   setTimeout(() => popup.remove(), 2000);
 
-  // Check achievements
   if (totalPoints >= 500) unlockBadge('neon_legend');
 }
 
