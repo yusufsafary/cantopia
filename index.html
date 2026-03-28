@@ -593,7 +593,154 @@ footer {
   .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
   .membership-grid { grid-template-columns: 1fr; }
 }
-</style>
+
+/* ===== HOW TO ===== */
+#howto { background: transparent; }
+.howto-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px; counter-reset: step-counter;
+}
+.howto-step {
+  background: var(--bg-card); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 6px; padding: 32px 28px; position: relative; overflow: hidden;
+  transition: all 0.3s; counter-increment: step-counter;
+}
+.howto-step::before {
+  content: "0" counter(step-counter);
+  position: absolute; top: -10px; right: 16px;
+  font-family: var(--font-display); font-size: 5rem; line-height: 1;
+  color: rgba(255,255,255,0.04); pointer-events: none;
+}
+.howto-step:hover { transform: translateY(-6px); border-color: rgba(0,212,255,0.3); box-shadow: 0 0 20px rgba(0,212,255,0.08); }
+.howto-step-icon { font-size: 2.2rem; margin-bottom: 16px; display: block; }
+.howto-step-title { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 10px; }
+.howto-step-desc { font-size: 0.86rem; color: var(--text-dim); line-height: 1.7; }
+.howto-step-tag {
+  display: inline-block; margin-top: 14px;
+  font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.12em;
+  text-transform: uppercase; padding: 3px 10px; border-radius: 2px;
+}
+
+/* ===== WHITEPAPER + ROADMAP ===== */
+#whitepaper { background: linear-gradient(180deg, var(--bg-dark), #090518 50%, var(--bg-dark)); max-width:100%; padding:80px 24px; }
+#whitepaper .inner { max-width:1400px; margin:0 auto; }
+.wp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+.wp-doc {
+  background: var(--bg-card2); border: 1px solid rgba(191,0,255,0.25);
+  border-radius: 6px; padding: 36px;
+  box-shadow: 0 0 30px rgba(191,0,255,0.08);
+}
+.wp-doc h3 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 6px; }
+.wp-doc .wp-version { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 24px; }
+.wp-section { margin-bottom: 24px; }
+.wp-section h4 { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--neon-purple); margin-bottom: 8px; }
+.wp-section p { font-size: 0.86rem; color: var(--text-dim); line-height: 1.75; }
+.wp-section ul { list-style: none; padding: 0; margin-top: 8px; }
+.wp-section ul li { font-size: 0.84rem; color: var(--text-dim); padding: 4px 0 4px 18px; position: relative; }
+.wp-section ul li::before { content: '◆'; position: absolute; left: 0; font-size: 0.5rem; color: var(--neon-purple); top: 7px; }
+.wp-divider { border: none; border-top: 1px solid rgba(191,0,255,0.15); margin: 20px 0; }
+.wp-download-btn {
+  display: flex; align-items: center; gap: 10px; margin-top: 24px;
+  font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.1em;
+  color: var(--neon-purple); border: 1px solid rgba(191,0,255,0.4);
+  border-radius: 3px; padding: 12px 20px; cursor: pointer; background: transparent;
+  transition: all 0.2s; text-transform: uppercase;
+}
+.wp-download-btn:hover { background: rgba(191,0,255,0.1); border-color: var(--neon-purple); box-shadow: 0 0 15px rgba(191,0,255,0.2); }
+
+/* Roadmap */
+.roadmap-panel {
+  background: var(--bg-card2); border: 1px solid rgba(0,212,255,0.2);
+  border-radius: 6px; padding: 36px;
+}
+.roadmap-panel h3 { font-family: var(--font-display); font-size: 2rem; color: var(--neon-blue); margin-bottom: 4px; }
+.roadmap-panel .wp-version { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 28px; }
+.roadmap-phases { display: flex; flex-direction: column; gap: 0; }
+.roadmap-phase { display: flex; gap: 20px; position: relative; }
+.roadmap-phase:not(:last-child)::after {
+  content: ''; position: absolute; left: 17px; top: 36px; bottom: -16px;
+  width: 2px; background: linear-gradient(180deg, var(--neon-blue), transparent);
+  opacity: 0.3;
+}
+.phase-dot-col { display: flex; flex-direction: column; align-items: center; padding-top: 4px; flex-shrink: 0; }
+.phase-dot {
+  width: 34px; height: 34px; border-radius: 50%; border: 2px solid;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono); font-size: 0.7rem; font-weight: 700;
+  flex-shrink: 0;
+}
+.phase-dot.done { border-color: var(--neon-green); color: var(--neon-green); background: rgba(0,255,159,0.1); }
+.phase-dot.active { border-color: var(--neon-yellow); color: var(--neon-yellow); background: rgba(255,230,0,0.1); box-shadow: 0 0 12px rgba(255,230,0,0.3); animation: neonPulse 2s infinite; }
+.phase-dot.upcoming { border-color: rgba(255,255,255,0.2); color: var(--text-dim); }
+.phase-body { padding: 0 0 28px 0; flex: 1; }
+.phase-label { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 4px; }
+.phase-label.done { color: var(--neon-green); }
+.phase-label.active { color: var(--neon-yellow); }
+.phase-label.upcoming { color: var(--text-dim); }
+.phase-title { font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 6px; }
+.phase-items { list-style: none; padding: 0; }
+.phase-items li { font-size: 0.8rem; color: var(--text-dim); padding: 2px 0 2px 16px; position: relative; }
+.phase-items li::before { content: '→'; position: absolute; left: 0; color: var(--neon-blue); }
+
+@media (max-width: 900px) { .wp-grid { grid-template-columns: 1fr; } }
+
+/* ===== TEAM ===== */
+#team { background: transparent; }
+.team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+.team-card {
+  background: var(--bg-card); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 6px; padding: 28px 24px; text-align: center;
+  transition: all 0.3s; position: relative; overflow: hidden;
+}
+.team-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+  opacity: 0; transition: opacity 0.3s;
+}
+.team-card:hover { transform: translateY(-6px); border-color: rgba(0,212,255,0.25); }
+.team-card:hover::before { opacity: 1; }
+.team-avatar {
+  width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem; border: 2px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.04);
+  position: relative; overflow: hidden;
+}
+.team-avatar-ring {
+  position: absolute; inset: -3px; border-radius: 50%;
+  border: 2px solid transparent; transition: all 0.3s;
+}
+.team-card:hover .team-avatar-ring { border-color: var(--neon-blue); box-shadow: 0 0 12px rgba(0,212,255,0.4); }
+.team-name { font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 3px; }
+.team-role { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 10px; }
+.team-bio { font-size: 0.78rem; color: var(--text-dim); line-height: 1.6; margin-bottom: 14px; }
+.team-social { display: flex; gap: 8px; justify-content: center; }
+.team-social a {
+  font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.05em;
+  padding: 4px 10px; border-radius: 2px; text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.1); color: var(--text-dim);
+  transition: all 0.2s;
+}
+.team-social a:hover { border-color: var(--neon-blue); color: var(--neon-blue); }
+.team-social a.real-link { border-color: rgba(0,212,255,0.3); color: var(--neon-blue); }
+.team-social a.real-link:hover { background: rgba(0,212,255,0.1); }
+
+/* ===== ORYNTH BADGE ===== */
+.orynth-section {
+  padding: 40px 24px; text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  background: var(--bg-card2);
+}
+.orynth-section p {
+  font-family: var(--font-mono); font-size: 0.72rem;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--text-dim); margin-bottom: 16px;
+}
+.orynth-badge-wrap {
+  display: inline-block; transition: transform 0.2s;
+}
+.orynth-badge-wrap:hover { transform: scale(1.05); }
+
 </head>
 <body>
 
@@ -605,6 +752,9 @@ footer {
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#trivia">Trivia</a></li>
     <li><a href="#membership">Membership</a></li>
+    <li><a href="#howto">How To</a></li>
+    <li><a href="#whitepaper">Whitepaper</a></li>
+    <li><a href="#team">Team</a></li>
     <li><a href="#community">Community</a></li>
   </ul>
   <div class="nav-points" id="navPoints">⭐ 0 PTS</div>
@@ -619,6 +769,9 @@ footer {
   <a href="#gallery" onclick="toggleMenu()">Gallery</a>
   <a href="#trivia" onclick="toggleMenu()">Trivia</a>
   <a href="#membership" onclick="toggleMenu()">Membership</a>
+  <a href="#howto" onclick="toggleMenu()">How To</a>
+  <a href="#whitepaper" onclick="toggleMenu()">Whitepaper</a>
+  <a href="#team" onclick="toggleMenu()">Team</a>
   <a href="#community" onclick="toggleMenu()">Community</a>
 </div>
 
@@ -789,7 +942,334 @@ footer {
 </div>
 </div>
 
-<!-- ===== COMMUNITY SUBMISSION ===== -->
+<!-- ===== HOW TO USE CANTOPIA ===== -->
+<section id="howto">
+  <div class="section-header">
+    <h2 class="section-title neon-text-blue">HOW TO USE CANTOPIA</h2>
+    <p>Get started in minutes — no prior knowledge needed. Just bring your curiosity.</p>
+  </div>
+  <div class="howto-grid">
+
+    <div class="howto-step" style="border-top: 2px solid var(--neon-blue);">
+      <span class="howto-step-icon">🔍</span>
+      <div class="howto-step-title" style="color:var(--neon-blue)">Explore the Archive</div>
+      <p class="howto-step-desc">Start by browsing the <strong>interactive timeline</strong> at the top of the page. Use the category filters — Music, Film, Fashion, Manga, Games — to focus on what you love most. Drag or scroll horizontally through 50+ years of HK pop culture history. Click any item to open a detailed popup with context, significance, and shareable info.</p>
+      <span class="howto-step-tag" style="background:rgba(0,212,255,0.1);color:var(--neon-blue);">Step 01 · Discover</span>
+    </div>
+
+    <div class="howto-step" style="border-top: 2px solid var(--neon-pink);">
+      <span class="howto-step-icon">🎮</span>
+      <div class="howto-step-title" style="color:var(--neon-pink)">Play & Earn Points</div>
+      <p class="howto-step-desc">Head to the <strong>HK Pop Quiz</strong> section and test your Cantopop knowledge across 5 curated questions. Every correct answer earns you 100 points — with streak bonuses for consecutive wins. Points accumulate in real-time and appear in the top navigation bar. Earn enough points to unlock exclusive badges and climb the leaderboard.</p>
+      <span class="howto-step-tag" style="background:rgba(255,45,120,0.1);color:var(--neon-pink);">Step 02 · Play</span>
+    </div>
+
+    <div class="howto-step" style="border-top: 2px solid var(--neon-yellow);">
+      <span class="howto-step-icon">🏅</span>
+      <div class="howto-step-title" style="color:var(--neon-yellow)">Collect Badges</div>
+      <p class="howto-step-desc">Cantopia rewards curious explorers. As you interact — opening timeline items, liking gallery pieces, completing trivia, and submitting content — you automatically unlock <strong>achievement badges</strong>. Check the Membership section to see your current badge collection. Locked badges show you what's still to discover, giving you goals to chase.</p>
+      <span class="howto-step-tag" style="background:rgba(255,230,0,0.1);color:var(--neon-yellow);">Step 03 · Collect</span>
+    </div>
+
+    <div class="howto-step" style="border-top: 2px solid var(--neon-green);">
+      <span class="howto-step-icon">✍️</span>
+      <div class="howto-step-title" style="color:var(--neon-green)">Contribute to the Archive</div>
+      <p class="howto-step-desc">You don't just consume — you <strong>build the archive</strong>. Scroll to the Community section and submit your own HK pop culture gem. Add a name, pick a category, give it a title and year, and write why it matters. Your submission appears instantly in the community feed and earns you 50 points plus the Contributor badge.</p>
+      <span class="howto-step-tag" style="background:rgba(0,255,159,0.1);color:var(--neon-green);">Step 04 · Contribute</span>
+    </div>
+
+    <div class="howto-step" style="border-top: 2px solid var(--neon-purple);">
+      <span class="howto-step-icon">🌃</span>
+      <div class="howto-step-title" style="color:var(--neon-purple)">Unlock Membership Perks</div>
+      <p class="howto-step-desc">Ready to go deeper? Choose a <strong>membership tier</strong> to unlock the full archive vault of 3,000+ items, receive monthly limited-edition digital collectibles, get VIP Discord access, and even receive physical merchandise. Neon and Golden members get early access to new features, live events, and exclusive filmmaker content before anyone else.</p>
+      <span class="howto-step-tag" style="background:rgba(191,0,255,0.1);color:var(--neon-purple);">Step 05 · Upgrade</span>
+    </div>
+
+    <div class="howto-step" style="border-top: 2px solid rgba(255,255,255,0.2);">
+      <span class="howto-step-icon">🤝</span>
+      <div class="howto-step-title" style="color:var(--text-main)">Join the Community</div>
+      <p class="howto-step-desc">Cantopia is more than an archive — it's a living community of fans, academics, creators, and nostalgia-seekers. Follow us on <strong>X @otakucompassai</strong>, join the Discord server, sign up for the monthly newsletter for curated drops, and attend live virtual events with special guests from HK's entertainment world. Every member makes the archive richer.</p>
+      <span class="howto-step-tag" style="background:rgba(255,255,255,0.05);color:var(--text-dim);">Step 06 · Connect</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== WHITEPAPER & ROADMAP ===== -->
+<div id="whitepaper">
+<div class="inner">
+  <div class="section-header">
+    <h2 class="section-title neon-text-purple">WHITEPAPER & ROADMAP</h2>
+    <p>Our vision, architecture, and plan for building the world's most complete HK pop culture archive</p>
+  </div>
+  <div class="wp-grid">
+
+    <!-- WHITEPAPER -->
+    <div class="wp-doc">
+      <h3 class="neon-text-purple">Cantopia Whitepaper</h3>
+      <div class="wp-version">Version 1.2 · Published March 2024 · 18-page summary</div>
+
+      <div class="wp-section">
+        <h4>Executive Summary</h4>
+        <p>Cantopia is a community-owned interactive digital archive dedicated to preserving and celebrating Hong Kong pop culture from the 1970s to the present. We combine archival depth with gamification, community contributions, and digital collectibles to create an experience unlike any other cultural platform.</p>
+      </div>
+      <hr class="wp-divider">
+
+      <div class="wp-section">
+        <h4>The Problem</h4>
+        <p>Despite its global influence, Hong Kong pop culture has no unified, interactive, and community-driven archive. Existing resources are fragmented across Wikipedia, fan sites, and academic papers — inaccessible to casual fans and lacking the engagement that modern audiences expect.</p>
+      </div>
+      <hr class="wp-divider">
+
+      <div class="wp-section">
+        <h4>Our Solution</h4>
+        <ul>
+          <li>Interactive multimedia timeline spanning 1970–present</li>
+          <li>Gamified exploration with points, badges, and leaderboards</li>
+          <li>Community-submitted entries with editorial review layer</li>
+          <li>Tiered membership with digital collectible NFT drops</li>
+          <li>API access for researchers and developers (v2.0+)</li>
+          <li>Multilingual support: English, 繁體中文, 简体中文 (roadmap)</li>
+        </ul>
+      </div>
+      <hr class="wp-divider">
+
+      <div class="wp-section">
+        <h4>Technology Stack</h4>
+        <ul>
+          <li>Frontend: React 18 + TypeScript, hosted on Vercel Edge</li>
+          <li>Backend: Node.js + Supabase (Postgres + realtime)</li>
+          <li>Search: Meilisearch for full-text archive queries</li>
+          <li>Media CDN: Cloudflare R2 + Stream for video delivery</li>
+          <li>Collectibles: ERC-1155 on Polygon (low-fee, eco-friendly)</li>
+          <li>AI layer: Semantic tagging + recommendation engine (GPT-4o)</li>
+        </ul>
+      </div>
+      <hr class="wp-divider">
+
+      <div class="wp-section">
+        <h4>Revenue Model</h4>
+        <ul>
+          <li>Tiered subscriptions (Street free / Neon HK$68 / Golden HK$188)</li>
+          <li>Digital collectible primary & secondary sales (5% royalty)</li>
+          <li>Institutional licensing for universities and museums</li>
+          <li>Brand partnerships with culturally aligned companies</li>
+          <li>Events: virtual and in-person ticketed screenings & panels</li>
+        </ul>
+      </div>
+      <hr class="wp-divider">
+
+      <div class="wp-section">
+        <h4>Target Metrics (Year 1)</h4>
+        <ul>
+          <li>10,000 registered community members</li>
+          <li>3,000+ archive entries (500 editorial + community-sourced)</li>
+          <li>2,000 paid Neon/Golden subscribers</li>
+          <li>5 institutional licensing deals</li>
+          <li>Monthly active users: 40,000+</li>
+        </ul>
+      </div>
+
+      <button class="wp-download-btn" onclick="showToast('📄 Full Whitepaper PDF — Coming Q2 2024'); addPoints(10);">
+        <span>📄</span> Download Full Whitepaper PDF
+      </button>
+    </div>
+
+    <!-- ROADMAP -->
+    <div class="roadmap-panel">
+      <h3>Product Roadmap</h3>
+      <div class="wp-version">2024 – 2026 · Living Document · Last Updated: Q1 2024</div>
+
+      <div class="roadmap-phases">
+
+        <div class="roadmap-phase">
+          <div class="phase-dot-col">
+            <div class="phase-dot done">✓</div>
+          </div>
+          <div class="phase-body">
+            <div class="phase-label done">Phase 01 · Q1 2024 · COMPLETE</div>
+            <div class="phase-title">Foundation</div>
+            <ul class="phase-items">
+              <li>Interactive prototype launched</li>
+              <li>20-item editorial timeline seeded</li>
+              <li>Trivia engine + points system live</li>
+              <li>Community submission form</li>
+              <li>Membership tier structure defined</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="roadmap-phase">
+          <div class="phase-dot-col">
+            <div class="phase-dot active">→</div>
+          </div>
+          <div class="phase-body">
+            <div class="phase-label active">Phase 02 · Q2–Q3 2024 · IN PROGRESS</div>
+            <div class="phase-title">Archive Expansion</div>
+            <ul class="phase-items">
+              <li>500-item archive milestone</li>
+              <li>Video embedding (YouTube/Vimeo)</li>
+              <li>Full-text search across archive</li>
+              <li>Editorial review queue for submissions</li>
+              <li>Mobile app beta (iOS & Android)</li>
+              <li>Discord community launch</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="roadmap-phase">
+          <div class="phase-dot-col">
+            <div class="phase-dot upcoming">3</div>
+          </div>
+          <div class="phase-body">
+            <div class="phase-label upcoming">Phase 03 · Q4 2024 · UPCOMING</div>
+            <div class="phase-title">Collectibles & Monetisation</div>
+            <ul class="phase-items">
+              <li>Digital collectible NFT drops (Polygon)</li>
+              <li>Neon & Golden membership payments live</li>
+              <li>Leaderboard seasons with prize pools</li>
+              <li>First institutional licensing deal</li>
+              <li>Multilingual UI: Traditional Chinese</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="roadmap-phase">
+          <div class="phase-dot-col">
+            <div class="phase-dot upcoming">4</div>
+          </div>
+          <div class="phase-body">
+            <div class="phase-label upcoming">Phase 04 · Q1–Q2 2025 · PLANNED</div>
+            <div class="phase-title">Global Reach</div>
+            <ul class="phase-items">
+              <li>API v1.0 for researchers & developers</li>
+              <li>3,000+ archive entries milestone</li>
+              <li>First live event: HK Pop Culture Night</li>
+              <li>Simplified Chinese + Japanese UI</li>
+              <li>AI-powered recommendation engine</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="roadmap-phase">
+          <div class="phase-dot-col">
+            <div class="phase-dot upcoming">5</div>
+          </div>
+          <div class="phase-body" style="padding-bottom:0">
+            <div class="phase-label upcoming">Phase 05 · 2026 · VISION</div>
+            <div class="phase-title">Cultural Institution</div>
+            <ul class="phase-items">
+              <li>10,000+ archive entries</li>
+              <li>Physical exhibition partnerships (HK, Tokyo, London)</li>
+              <li>Academic research grants programme</li>
+              <li>Cantopia Documentary Series (streaming)</li>
+              <li>DAO governance for community curation</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ===== TEAM ===== -->
+<section id="team">
+  <div class="section-header">
+    <h2 class="section-title neon-text-blue">THE TEAM</h2>
+    <p>A passionate crew of archivists, developers, and pop culture obsessives building Cantopia</p>
+  </div>
+  <div class="team-grid">
+
+    <div class="team-card">
+      <div class="team-avatar" style="background:linear-gradient(135deg,rgba(255,45,120,0.2),rgba(191,0,255,0.2));border-color:rgba(255,45,120,0.3);">
+        <div class="team-avatar-ring"></div>
+        🎬
+      </div>
+      <div class="team-name">Kai Mong</div>
+      <div class="team-role" style="color:var(--neon-pink)">Founder & CEO</div>
+      <p class="team-bio">Former TVB researcher turned digital archivist. Grew up in Mong Kok with a VHS collection of 800+ HK films. Obsessed with making culture accessible.</p>
+      <div class="team-social">
+        <a href="https://x.com/otakucompassai" target="_blank" rel="noopener" class="real-link">𝕏 @otakucompassai</a>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-avatar" style="background:linear-gradient(135deg,rgba(0,212,255,0.2),rgba(0,255,159,0.2));border-color:rgba(0,212,255,0.3);">
+        <div class="team-avatar-ring"></div>
+        💻
+      </div>
+      <div class="team-name">Priya Leung</div>
+      <div class="team-role" style="color:var(--neon-blue)">CTO & Lead Engineer</div>
+      <p class="team-bio">Full-stack developer with 10 years in SaaS. Cantopop devotee since age 7. Built Cantopia's real-time archive engine from the ground up in 8 weeks.</p>
+      <div class="team-social">
+        <a href="#" onclick="showToast('Priya\'s X — coming soon!')">𝕏 @priya_builds</a>
+        <a href="#" onclick="showToast('GitHub — coming soon!')">GitHub</a>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-avatar" style="background:linear-gradient(135deg,rgba(191,0,255,0.2),rgba(255,45,120,0.2));border-color:rgba(191,0,255,0.3);">
+        <div class="team-avatar-ring"></div>
+        🎨
+      </div>
+      <div class="team-name">Dani Chan</div>
+      <div class="team-role" style="color:var(--neon-purple)">Head of Design</div>
+      <p class="team-bio">Product designer from Hong Kong, now based in London. Draws inspiration from neon signage, 90s MTV Asia, and the visual language of Wong Kar-wai's colour palettes.</p>
+      <div class="team-social">
+        <a href="#" onclick="showToast('Dani\'s X — coming soon!')">𝕏 @danichan_hk</a>
+        <a href="#" onclick="showToast('Dribbble — coming soon!')">Dribbble</a>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-avatar" style="background:linear-gradient(135deg,rgba(255,230,0,0.2),rgba(255,100,0,0.2));border-color:rgba(255,230,0,0.3);">
+        <div class="team-avatar-ring"></div>
+        📚
+      </div>
+      <div class="team-name">Prof. Marcus Yip</div>
+      <div class="team-role" style="color:var(--neon-yellow)">Chief Archivist</div>
+      <p class="team-bio">Lecturer in Cultural Studies at CUHK. Published author on Cantopop sociology. Brings academic rigour and a personal archive of 4,000+ items to the project.</p>
+      <div class="team-social">
+        <a href="#" onclick="showToast('Marcus\'s academic page — coming soon!')">Academia.edu</a>
+        <a href="#" onclick="showToast('CUHK profile — coming soon!')">CUHK</a>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-avatar" style="background:linear-gradient(135deg,rgba(0,255,159,0.2),rgba(0,212,255,0.2));border-color:rgba(0,255,159,0.3);">
+        <div class="team-avatar-ring"></div>
+        📣
+      </div>
+      <div class="team-name">Sofia Ng</div>
+      <div class="team-role" style="color:var(--neon-green)">Head of Community</div>
+      <p class="team-bio">Community builder behind three 10k-member Discord servers. HK cinema blogger since 2015. Runs the weekly Cantopia newsletter and all social channels.</p>
+      <div class="team-social">
+        <a href="#" onclick="showToast('Sofia\'s X — coming soon!')">𝕏 @sofia_pops</a>
+        <a href="#" onclick="showToast('Newsletter — coming soon!')">Substack</a>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-avatar" style="background:linear-gradient(135deg,rgba(255,45,120,0.15),rgba(0,212,255,0.15));border-color:rgba(255,255,255,0.1);">
+        <div class="team-avatar-ring"></div>
+        🤖
+      </div>
+      <div class="team-name">Leon Fung</div>
+      <div class="team-role" style="color:var(--text-dim)">AI & Data Engineer</div>
+      <p class="team-bio">ML engineer specialising in content recommendation and semantic search. Building the AI tagging layer that will make Cantopia's 10,000-item archive instantly navigable.</p>
+      <div class="team-social">
+        <a href="#" onclick="showToast('Leon\'s GitHub — coming soon!')">GitHub</a>
+        <a href="#" onclick="showToast('Leon\'s X — coming soon!')">𝕏 @leon_ml</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
 <section id="community">
   <div class="section-header">
     <h2 class="section-title neon-text-green" style="color:var(--neon-green);text-shadow:0 0 10px var(--neon-green),0 0 30px var(--neon-green);">COMMUNITY ARCHIVE</h2>
@@ -847,7 +1327,7 @@ footer {
       </div>
       <div class="social-links" style="margin-top:16px;">
         <a class="social-link" onclick="showToast('Instagram coming soon!')">📷</a>
-        <a class="social-link" onclick="showToast('X / Twitter coming soon!')">🐦</a>
+        <a class="social-link" href="https://x.com/otakucompassai" target="_blank" rel="noopener" title="Follow on X">𝕏</a>
         <a class="social-link" onclick="showToast('YouTube coming soon!')">📺</a>
         <a class="social-link" onclick="showToast('Discord coming soon!')">💬</a>
         <a class="social-link" onclick="showToast('TikTok coming soon!')">🎵</a>
@@ -895,7 +1375,17 @@ footer {
   </div>
 </footer>
 
-<!-- ===== TIMELINE MODAL ===== -->
+<!-- ===== ORYNTH BADGE ===== -->
+<div class="orynth-section">
+  <p>Featured on</p>
+  <div class="orynth-badge-wrap">
+    <a href="https://orynth.dev/projects/cantopia" target="_blank" rel="noopener">
+      <img src="https://orynth.dev/api/badge/cantopia?theme=light&style=default" alt="Featured on Orynth" width="260" height="80" />
+    </a>
+  </div>
+</div>
+
+
 <div class="modal-overlay" id="tlModal">
   <div class="modal-box">
     <div class="modal-header">
